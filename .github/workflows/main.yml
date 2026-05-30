@@ -7,6 +7,9 @@ on:
   pull_request:
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
@@ -66,7 +69,6 @@ jobs:
             ${{ github.workspace }}/*PHP-*-PM*/*.tar.gz
             ${{ github.workspace }}/*PHP-*-Windows-PM*/*.zip
             ${{ github.workspace }}/*PHP-*.gdbinit/*.gdbinit
-
           name: PHP (Build ${{ github.run_number }}) - Archive
           tag: php-build-${{ github.run_number }}
           commit: ${{ github.sha }}
