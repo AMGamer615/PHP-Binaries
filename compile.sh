@@ -1361,6 +1361,7 @@ $HAVE_MYSQLI \
 --enable-igbinary \
 --enable-snappy \
 --enable-redis \
+--disable-redis-session \
 --with-crypto \
 --enable-recursionguard \
 --enable-xxhash \
