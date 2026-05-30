@@ -1172,7 +1172,12 @@ get_github_extension "snappy" "$EXT_SNAPPY_VERSION" "kjdev" "php-ext-snappy"
 
 get_github_extension "redis" "$EXT_REDIS_VERSION" "phpredis" "phpredis"
 
-get_github_extension "mongodb" "$EXT_MONGODB_VERSION" "mongodb" "mongo-php-driver"
+echo -n "  mongodb: downloading $EXT_MONGODB_VERSION..."
+git clone --depth 1 --branch "$EXT_MONGODB_VERSION" --recursive https://github.com/mongodb/mongo-php-driver.git "$BUILD_DIR/php/ext/mongodb" >> "$DIR/install.log" 2>&1
+cd "$BUILD_DIR/php/ext/mongodb"
+git submodule update --init --recursive >> "$DIR/install.log" 2>&1
+cd "$BUILD_DIR/php"
+write_done
 
 get_github_extension "recursionguard" "$EXT_RECURSIONGUARD_VERSION" "pmmp" "ext-recursionguard"
 
